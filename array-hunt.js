@@ -223,7 +223,7 @@ $(document).ready(function () {
          */
         index = myArray.length-1;
         let rd = "";
-        while (index < myArray.length) {
+        while (index >= 0) {
             rd += myArray[index];
             if (index > 0){
                 rd += " - ";
