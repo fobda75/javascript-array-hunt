@@ -104,40 +104,133 @@ $(document).ready(function () {
         Find the first string that contains an 'n'.
         Output it to td#firstEnn
          */
-
+        let index = 0;
+        let foundIndex =-1;
+        while (index < myArray.length){
+            if (myArray[index].indexOf("n")>-1){
+                foundIndex = index;
+                index = myArray.length+1;
+            }
+            else{
+                index ++;
+            }
+        }
+        if (foundIndex > -1){
+            $("td#firstEnn").text(myArray[foundIndex]);
+        }
+        else{
+            $("td#firstEnn").text("No entries contain the letter 'n'");
+        }
 
         /*
         Find all of the strings with less than 6 characters.
         Output them to td#lessThanSix
          */
+        index = 0;
+        let found = false;
+        let subSixArray = [];
+        while (index < myArray.length){
+            if (myArray[index].length<6){
+                subSixArray.push(myArray[index]);
+                found = true;
+            }
+            index ++;
+        }
 
+        if (found){
+            $("td#lessThanSix").text(subSixArray);
+        }
+        else{
+            $("td#lessThanSix").text("No entries contain fewer than 6 letters");
+        }
 
 
         /*
         Find the longest string in the array.
         Output it to td#longName
          */
+        index = 0;
+        let longest = "";
+        while (index < myArray.length){
+            if (myArray[index].length>longest.length){
+                longest = myArray[index];
+            }
+            index ++;
+        }
 
+        $("td#longName").text(longest);
 
         /*
         Find all of the strings that do not contain the letter 's'.
         Output them to td#noEss
          */
-
+        index = 0;
+        let noEssArray = [];
+        while (index < myArray.length){
+            if (myArray[index].indexOf("s")===-1){
+                noEssArray.push(myArray[index]);
+            }
+            index ++;
+        }
+        if (noEssArray.length > 0){
+            $("td#noEss").text(noEssArray);
+        }
+        else{
+            $("td#firstEnn").text("All entries contain the letter 's'");
+        }
 
 
         /*
         Output all of the strings, but with all of their vowels
         in uppercase, to td#upperVowels
          */
-
+        let temp ="";
+        let upperVowelArray =[];
+        let innerIndex = 0;
+        index = 0;
+        while (index < myArray.length) {
+            innerIndex = 0;
+            temp ="";
+            while(innerIndex < myArray[index].length){
+                if (myArray[index].charAt(innerIndex) === "a"){
+                    temp += "A";
+                }
+                else if (myArray[index].charAt(innerIndex) === "e"){
+                    temp += "E";
+                }
+                else if (myArray[index].charAt(innerIndex) === "i"){
+                    temp += "I";
+                }
+                else if (myArray[index].charAt(innerIndex) === "o"){
+                    temp += "O";
+                }
+                else if (myArray[index].charAt(innerIndex) === "u"){
+                    temp += "U";
+                }
+                else {
+                    temp += myArray[index].charAt(innerIndex);
+                }
+                innerIndex ++;
+            }
+            upperVowelArray.push(temp);
+            index ++;
+        }
+        $("td#upperVowels").text(upperVowelArray);
 
         /*
         Output all of the strings in reverse order and separated by
         ' - ' to td#reverseDash
          */
-
-
-    }
+        index = myArray.length-1;
+        let rd = "";
+        while (index < myArray.length) {
+            rd += myArray[index];
+            if (index > 0){
+                rd += " - ";
+            }
+            index --;
+        }
+        $("td#reverseDash").text(rd);
+        }
 
 });
